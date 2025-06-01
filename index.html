@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameTopUp - Top Up Game Mobile & PC Terpercaya</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6c5ce7;
+            --secondary-color: #a29bfe;
+            --accent-color: #fd79a8;
+            --dark-color: #2d3436;
+            --light-color: #ddd6fe;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            color: var(--primary-color) !important;
+            font-size: 1.5rem;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, rgba(108, 92, 231, 0.9), rgba(162, 155, 254, 0.9));
+            padding: 100px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .game-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .game-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .game-title {
+            font-weight: bold;
+            color: var(--dark-color);
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        .game-desc {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .topup-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border: none;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .topup-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+        }
+
+        .payment-section {
+            background: white;
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--dark-color);
+            margin-bottom: 3rem;
+        }
+
+        .payment-method {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 1rem;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .payment-method:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .payment-method.selected {
+            border-color: var(--primary-color);
+            background: var(--light-color);
+        }
+
+        .payment-logo {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            margin-right: 15px;
+        }
+
+        .topup-form {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .form-control, .form-select {
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            padding: 12px 15px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(108, 92, 231, 0.25);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border: none;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(108, 92, 231, 0.4);
+        }
+
+        .footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 40px 0 20px 0;
+            text-align: center;
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .price-tag {
+            background: var(--accent-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .modal-content {
+            border-radius: 15px;
+            border: none;
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .loading-spinner {
+            display: none;
+        }
+
+        .success-message {
+            display: none;
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Background Elements -->
+    <div class="floating-elements">
+        <i class="fas fa-gamepad floating-element" style="top: 10%; left: 10%; font-size: 3rem;"></i>
+        <i class="fas fa-coins floating-element" style="top: 20%; right: 15%; font-size: 2rem;"></i>
+        <i class="fas fa-gem floating-element" style="bottom: 30%; left: 20%; font-size: 2.5rem;"></i>
+        <i class="fas fa-trophy floating-element" style="bottom: 10%; right: 10%; font-size: 3rem;"></i>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-gamepad me-2"></i>GameTopUp
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#games">Games</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#payment">Pembayaran</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Kontak</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">Top Up Game Instan!</h1>
+            <p class="hero-subtitle">Dapatkan diamond, coin, dan item game favorit Anda dengan mudah dan aman</p>
+            <a href="#games" class="btn btn-light btn-lg px-4 py-2">
+                <i class="fas fa-play me-2"></i>Mulai Top Up
+            </a>
+        </div>
+    </section>
+
+    <!-- Games Section -->
+    <section id="games" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Game Populer</h2>
+            <div class="row">
+                <!-- Mobile Legends -->
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="game-card">
+                        <div style="background: linear-gradient(45deg, #1e3c72, #2a5298); height: 200px; display: flex; align-items: center; justify-content: center;">
+                            <div style="text-align: center; color: white;">
+                                <i class="fas fa-shield-alt" style="font-size: 4rem; margin-bottom: 10px;"></i>
+                                <h5>Mobile Legends</h5>
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h5 class="game-title">Mobile Legends: Bang Bang</h5>
+                            <p class="game-desc">Top up diamond ML dengan harga termurah dan proses tercepat!</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price-tag">Mulai Rp 15.000</span>
+                                <button class="btn topup-btn" onclick="openTopupModal('Mobile Legends')">
+                                    <i class="fas fa-gem me-1"></i>Top Up
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Free Fire -->
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="game-card">
+                        <div style="background: linear-gradient(45deg, #ff6b6b, #ee5a24); height: 200px; display: flex; align-items: center; justify-content: center;">
+                            <div style="text-align: center; color: white;">
+                                <i class="fas fa-fire" style="font-size: 4rem; margin-bottom: 10px;"></i>
+                                <h5>Free Fire</h5>
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h5 class="game-title">Garena Free Fire</h5>
+                            <p class="game-desc">Beli diamond Free Fire murah dan dapatkan bonus eksklusif!</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price-tag">Mulai Rp 10.000</span>
+                                <button class="btn topup-btn" onclick="openTopupModal('Free Fire')">
+                                    <i class="fas fa-gem me-1"></i>Top Up
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PUBG Mobile -->
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="game-card">
+                        <div style="background: linear-gradient(45deg, #f39c12, #d68910); height: 200px; display: flex; align-items: center; justify-content: center;">
+                            <div style="text-align: center; color: white;">
+                                <i class="fas fa-crosshairs" style="font-size: 4rem; margin-bottom: 10px;"></i>
+                                <h5>PUBG Mobile</h5>
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h5 class="game-title">PUBG Mobile</h5>
+                            <p class="game-desc">Top up UC PUBG Mobile dengan berbagai denominasi pilihan!</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price-tag">Mulai Rp 16.000</span>
+                                <button class="btn topup-btn" onclick="openTopupModal('PUBG Mobile')">
+                                    <i class="fas fa-gem me-1"></i>Top Up
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Genshin Impact -->
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="game-card">
+                        <div style="background: linear-gradient(45deg, #9b59b6, #8e44ad); height: 200px; display: flex; align-items: center; justify-content: center;">
+                            <div style="text-align: center; color: white;">
+                                <i class="fas fa-magic" style="font-size: 4rem; margin-bottom: 10px;"></i>
+                                <h5>Genshin Impact</h5>
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h5 class="game-title">Genshin Impact</h5>
+                            <p class="game-desc">Beli Genesis Crystal dan Welkin Moon dengan harga terbaik!</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price-tag">Mulai Rp 16.000</span>
+                                <button class="btn topup-btn" onclick="openTopupModal('Genshin Impact')">
+                                    <i class="fas fa-gem me-1"></i>Top Up
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Methods Section -->
+    <section id="payment" class="payment-section">
+        <div class="container">
+            <h2 class="section-title">Metode Pembayaran</h2>
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <h4 class="mb-3"><i class="fas fa-mobile-alt me-2"></i>E-Wallet</h4>
+                    <div class="payment-method" data-payment="ovo">
+                        <div class="d-flex align-items-center">
+                            <div style="width: 50px; height: 50px; background: #4c2889; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                                <span style="color: white; font-weight: bold;">OVO</span>
+                            </div>
+                            <div>
+                                <h6 class="mb-1">OVO</h6>
+                                <small class="text-muted">Bayar dengan saldo OVO</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="payment-method" data-payment="dana">
+                        <div class="d-flex align-items-center">
+                            <div style="width: 50px; height: 50px; background: #118EEA; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                                <span style="color: white; font-weight: bold;">DANA</span>
+                            </div>
+                            <div>
+                                <h6 class="mb-1">DANA</h6>
+                                <small class="text-muted">Bayar dengan saldo DANA</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="payment-method" data-payment="gopay">
+                        <div class="d-flex align-items-center">
+                            <div style="width: 50px; height: 50px; background: #00AA13; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                                <span style="color: white; font-weight: bold;">GO</span>
+                            </div>
+                            <div>
+                                <h6 class="mb-1">GoPay</h6>
+                                <small class="text-muted">Bayar dengan saldo GoPay</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="payment-method" data-payment="shopeepay">
+                        <div class="d-flex align-items-center">
+                            <div style="width: 50px; height: 50px; background: #EE4D2D; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                                <span style="color: white; font-weight: bold;">SP</span>
+                            </div>
+                            <div>
+                                <h6 class="mb-1">ShopeePay</h6>
+                                <small class="text-muted">Bayar dengan ShopeePay</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 mb-4">
+                    <h4 class="mb-3"><i class="fas fa-university me-2"></i>Transfer Bank</h4>
+                    <div class="payment-method" data-payment="bca">
+                        <div class="d-flex align-items-center">
+                            <div style="width: 50px; height: 50px; background: #003d7a; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                                <span style="color: white; font-weight: bold; font-size: 0.8rem;">BCA</span>
+                            </div>
+                            <div>
+                                <h6 class="mb-1">Bank BCA</h6>
+                                <small class="text-muted">Transfer ke rekening BCA</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="payment-method" data-payment="mandiri">
+                        <div class="d-flex align-items-center">
+                            <div style="width: 50px; height: 50px; background: #003d7a; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                                <span style="color: white; font-weight: bold; font-size: 0.7rem;">MANDIRI</span>
+                            </div>
+                            <div>
+                                <h6 class="mb-1">Bank Mandiri</h6>
+                                <small class="text-muted">Transfer ke rekening Mandiri</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="payment-method" data-payment="bri">
+                        <div class="d-flex align-items-center">
+                            <div style="width: 50px; height: 50px; background: #004b8d; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                                <span style="color: white; font-weight: bold; font-size: 0.8rem;">BRI</span>
+                            </div>
+                            <div>
+                                <h6 class="mb-1">Bank BRI</h6>
+                                <small class="text-muted">Transfer ke rekening BRI</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="payment-method" data-payment="bni">
+                        <div class="d-flex align-items-center">
+                            <div style="width: 50px; height: 50px; background: #e67e22; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                                <span style="color: white; font-weight: bold; font-size: 0.8rem;">BNI</span>
+                            </div>
+                            <div>
+                                <h6 class="mb-1">Bank BNI</h6>
+                                <small class="text-muted">Transfer ke rekening BNI</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Up Modal -->
+    <div class="modal fade" id="topupModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-gem me-2"></i>Top Up <span id="selectedGame"></span>
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="topupForm" class="topup-form">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Game ID/Username</label>
+                                <input type="text" class="form-control" id="gameId" placeholder="Masukkan Game ID" required>
+                                <small class="text-muted">Masukkan ID game atau username Anda</small>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Server (Opsional)</label>
+                                <input type="text" class="form-control" id="gameServer" placeholder="Contoh: 2001">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Pilih Nominal</label>
+                            <select class="form-select" id="nominal" required onchange="updatePrice()">
+                                <option value="">Pilih nominal top up</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Metode Pembayaran</label>
+                            <select class="form-select" id="paymentMethod" required>
+                                <option value="">Pilih metode pembayaran</option>
+                                <option value="ovo">OVO</option>
+                                <option value="dana">DANA</option>
+                                <option value="gopay">GoPay</option>
+                                <option value="shopeepay">ShopeePay</option>
+                                <option value="bca">Bank BCA</option>
+                                <option value="mandiri">Bank Mandiri</option>
+                                <option value="bri">Bank BRI</option>
+                                <option value="bni">Bank BNI</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">WhatsApp</label>
+                            <input type="tel" class="form-control" id="whatsapp" placeholder="08xxxxxxxxxx" required>
+                            <small class="text-muted">Untuk konfirmasi pembayaran</small>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Harga:</span>
+                                    <span id="itemPrice">Rp 0</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Biaya Admin:</span>
+                                    <span>Rp 1.000</span>
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-between">
+                                    <strong>Total Bayar:</strong>
+                                    <strong id="totalPrice">Rp 1.000</strong>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <button type="submit" class="submit-btn">
+                                    <span class="loading-spinner">
+                                        <i class="fas fa-spinner fa-spin me-2"></i>Processing...
+                                    </span>
+                                    <span class="btn-text">
+                                        <i class="fas fa-shopping-cart me-2"></i>Beli Sekarang
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="success-message" id="successMessage">
+                            <i class="fas fa-check-circle me-2"></i>
+                            Pesanan berhasil dibuat! Silakan lakukan pembayaran sesuai instruksi yang dikirim ke WhatsApp Anda.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-gamepad me-2"></i>GameTopUp</h5>
+                    <p>Platform top up game terpercaya dengan harga termurah dan proses tercepat di Indonesia.</p>
+                </div>
+                <div class="col-md-6">
+                    <h6>Hubungi Kami</h6>
+                    <p><i class="fas fa-phone me-2"></i>+62 812-3456-7890</p>
+                    <p><i class="fas fa-envelope me-2"></i>support@gametopup.com</p>
+                    <div>
+                        <i class="fab fa-instagram me-3" style="font-size: 1.5rem;"></i>
+                        <i class="fab fa-whatsapp me-3" style="font-size: 1.5rem;"></i>
+                        <i class="fab fa-telegram" style="font-size: 1.5rem;"></i>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p>&copy; 2025 GameTopUp. All rights reserved. | Powered by Bootstrap & JavaScript</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Game data with pricing
+        const gameData = {
+            'Mobile Legends': [
+                { value: 'ml-5', text: '5 Diamonds', price: 15000 },
+                { value: 'ml-12', text: '12 Diamonds', price: 25000 },
+                { value: 'ml-28', text: '28 Diamonds', price: 50000 },
+                { value: 'ml-85', text: '85 Diamonds', price: 140000 },
+                { value: 'ml-170', text: '170 Diamonds', price: 275000 },
+                { value: 'ml-240', text: '240 Diamonds', price: 385000 },
+                { value: 'ml-296', text: '296 Diamonds', price: 470000 }
+            ],
+            'Free Fire': [
+                { value: 'ff-20', text: '20 Diamonds', price: 10000 },
+                { value: 'ff-50', text: '50 Diamonds', price: 25000 },
+                { value: 'ff-100', text: '100 Diamonds', price: 45000 },
+                { value: 'ff-210', text: '210 Diamonds', price: 95000 },
+                { value: 'ff-355', text: '355 Diamonds', price: 160000 },
+                { value: 'ff-720', text: '720 Diamonds', price: 315000 }
+            ],
+            'PUBG Mobile': [
+                { value: 'pubg-60', text: '60 UC', price: 16000 },
+                { value: 'pubg-180', text: '180 UC', price: 45000 },
+                { value: 'pubg-300', text: '300 UC', price: 75000 },
+                { value: 'pubg-600', text: '600 UC', price: 150000
